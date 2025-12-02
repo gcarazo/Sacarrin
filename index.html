@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacarrin - Marcador de Fútbol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>SACARRIN</h1>
+            <div id="total-time-display" class="total-time-badge">Tiempo Efectivo Total: 00:00:00</div>
+        </header>
+
+        <main>
+            <!-- Match Status Section -->
+            <section id="match-area" class="glass-panel">
+                <div class="teams-display">
+                    <div id="team-a" class="team-card">
+                        <div class="team-color-indicator"></div>
+                        <h2 class="team-name">ROJO</h2>
+                        <div class="team-score">0</div>
+                        <button class="btn-goal" onclick="app.scoreGoal('A')">GOL</button>
+                    </div>
+
+                    <div class="vs-divider">VS</div>
+
+                    <div id="team-b" class="team-card">
+                        <div class="team-color-indicator"></div>
+                        <h2 class="team-name">NEGRO</h2>
+                        <div class="team-score">0</div>
+                        <button class="btn-goal" onclick="app.scoreGoal('B')">GOL</button>
+                    </div>
+                </div>
+
+                <div class="timer-container">
+                    <div id="timer-display">05:00</div>
+                    <div class="timer-controls">
+                        <button id="btn-start-pause" onclick="app.toggleTimer()">INICIAR</button>
+                        <button id="btn-reset" onclick="app.requestReset()" class="btn-secondary">REINICIAR</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Queue Section -->
+            <section id="queue-area" class="glass-panel">
+                <h3>Siguiente Equipo</h3>
+                <div id="team-next" class="team-badge">
+                    <span class="dot"></span>
+                    <span class="name">BLANCO</span>
+                </div>
+            </section>
+
+            <!-- Leaderboard Section -->
+            <section id="leaderboard-area" class="glass-panel">
+                <h3>Tabla de Posiciones</h3>
+                <table id="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Equipo</th>
+                            <th>Ganes</th>
+                            <th>Goles</th>
+                            <th>PJ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- History Section -->
+            <section id="history-area" class="glass-panel">
+                <h3>Historial de Partidos</h3>
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Partido</th>
+                            <th>Resultado</th>
+                            <th>Duración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Controls -->
+            <section class="controls-area">
+                <button onclick="app.resetTournament()" class="btn-danger">Reiniciar Torneo</button>
+            </section>
+        </main>
+
+        <!-- Modals -->
+        <div id="modal-resolution" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <h2>¡Tiempo Terminado!</h2>
+                <p>¿Cómo se definió el ganador?</p>
+                <div class="modal-actions">
+                    <button onclick="app.resolveMatch('A')" class="btn-team-a">Ganó <span
+                            id="modal-team-a-name">ROJO</span></button>
+                    <button onclick="app.resolveMatch('B')" class="btn-team-b">Ganó <span
+                            id="modal-team-b-name">NEGRO</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Modal -->
+        <div id="modal-reset" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <h2>Reiniciar Partido</h2>
+                <p>¿Deseas declarar un ganador o anular el partido?</p>
+                <div class="modal-actions">
+                    <button onclick="app.resolveMatch('A')" class="btn-team-a">Ganó <span
+                            id="reset-team-a-name">ROJO</span></button>
+                    <button onclick="app.resolveMatch('B')" class="btn-team-b">Ganó <span
+                            id="reset-team-b-name">NEGRO</span></button>
+                    <button onclick="app.forceReset()" class="btn-danger">Anular (Requiere Clave)</button>
+                    <button onclick="app.cancelReset()" class="btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setup Modal -->
+        <div id="setup-modal" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <h2>Configuración del Torneo</h2>
+
+                <div class="setup-section">
+                    <label for="match-duration">Duración del Partido (min):</label>
+                    <input type="number" id="match-duration" min="3" max="10" value="5" class="input-premium">
+                </div>
+
+                <div class="setup-section">
+                    <p>Orden de Equipos (Selecciona y Ordena):</p>
+                    <div id="setup-team-list" class="team-list">
+                        <!-- Red -->
+                        <div class="team-item" data-id="red">
+                            <div class="team-info">
+                                <input type="checkbox" value="red" checked>
+                                <span class="dot bg-red"></span>
+                                <span>ROJO</span>
+                            </div>
+                            <div class="sort-controls">
+                                <button onclick="app.moveUp(this)" class="btn-icon">▲</button>
+                                <button onclick="app.moveDown(this)" class="btn-icon">▼</button>
+                            </div>
+                        </div>
+                        <!-- White -->
+                        <div class="team-item" data-id="white">
+                            <div class="team-info">
+                                <input type="checkbox" value="white" checked>
+                                <span class="dot bg-white"></span>
+                                <span>BLANCO</span>
+                            </div>
+                            <div class="sort-controls">
+                                <button onclick="app.moveUp(this)" class="btn-icon">▲</button>
+                                <button onclick="app.moveDown(this)" class="btn-icon">▼</button>
+                            </div>
+                        </div>
+                        <!-- Black -->
+                        <div class="team-item" data-id="black">
+                            <div class="team-info">
+                                <input type="checkbox" value="black" checked>
+                                <span class="dot bg-black"></span>
+                                <span>NEGRO</span>
+                            </div>
+                            <div class="sort-controls">
+                                <button onclick="app.moveUp(this)" class="btn-icon">▲</button>
+                                <button onclick="app.moveDown(this)" class="btn-icon">▼</button>
+                            </div>
+                        </div>
+                        <!-- Blue -->
+                        <div class="team-item" data-id="blue">
+                            <div class="team-info">
+                                <input type="checkbox" value="blue">
+                                <span class="dot bg-blue"></span>
+                                <span>AZUL</span>
+                            </div>
+                            <div class="sort-controls">
+                                <button onclick="app.moveUp(this)" class="btn-icon">▲</button>
+                                <button onclick="app.moveDown(this)" class="btn-icon">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="app.confirmSetup()" class="btn-primary full-width">COMENZAR TORNEO</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
