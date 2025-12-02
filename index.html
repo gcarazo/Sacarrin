@@ -134,8 +134,13 @@
                 <h2>Configuración del Torneo</h2>
 
                 <div class="setup-section">
-                    <label for="match-duration">Duración del Partido (min):</label>
-                    <input type="number" id="match-duration" min="3" max="10" value="5" class="input-premium">
+                    <div class="duration-control">
+                        <label for="match-duration">Duración del Partido: <span id="duration-value"
+                                class="highlight-text">5 min</span></label>
+                        <input type="range" id="match-duration" min="3" max="10" value="5" step="1"
+                            class="slider-premium"
+                            oninput="document.getElementById('duration-value').textContent = this.value + ' min'">
+                    </div>
                 </div>
 
                 <div class="setup-section">

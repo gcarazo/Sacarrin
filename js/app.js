@@ -195,8 +195,8 @@ const app = {
         document.getElementById('reset-team-a-name').textContent = teamAName;
         document.getElementById('reset-team-b-name').textContent = teamBName;
 
-        document.querySelector('#modal-reset .btn-team-a').className = `btn-team-a ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].textClass === 'text-white' ? 'text-white' : ''}`;
-        document.querySelector('#modal-reset .btn-team-b').className = `btn-team-b ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].textClass === 'text-white' ? 'text-white' : ''}`;
+        document.querySelector('#modal-reset .btn-team-a').className = `btn-team-a ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].textClass}`;
+        document.querySelector('#modal-reset .btn-team-b').className = `btn-team-b ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].textClass}`;
     },
 
     cancelReset() {
@@ -250,8 +250,8 @@ const app = {
         document.getElementById('modal-team-a-name').textContent = teamAName;
         document.getElementById('modal-team-b-name').textContent = teamBName;
 
-        document.querySelector('#modal-resolution .btn-team-a').className = `btn-team-a ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].textClass === 'text-white' ? 'text-white' : ''}`;
-        document.querySelector('#modal-resolution .btn-team-b').className = `btn-team-b ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].textClass === 'text-white' ? 'text-white' : ''}`;
+        document.querySelector('#modal-resolution .btn-team-a').className = `btn-team-a ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamA.toUpperCase()].textClass}`;
+        document.querySelector('#modal-resolution .btn-team-b').className = `btn-team-b ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].colorClass} ${TEAMS[this.state.currentMatch.teamB.toUpperCase()].textClass}`;
     },
 
     resolveMatch(winnerSide) {

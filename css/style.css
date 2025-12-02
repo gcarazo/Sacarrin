@@ -161,209 +161,22 @@ button {
     border-radius: 12px;
     font-weight: 700;
     font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary {
-    background: transparent;
-    border: 1px solid var(--glass-border);
-    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
     padding: 12px 20px;
-    border-radius: 12px;
-    font-weight: 600;
-}
-
-/* Queue */
-#queue-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.team-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 8px 16px;
-    border-radius: 50px;
-}
-
-.team-badge .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
-/* Leaderboard */
-#stats-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-#stats-table th {
-    text-align: left;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    opacity: 0.6;
-    padding-bottom: 10px;
-}
-
-#stats-table td {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-weight: 600;
-}
-
-.btn-danger {
-    background: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    opacity: 1;
-    transition: opacity 0.3s;
-}
-
-.modal.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.modal-content {
-    width: 90%;
-    max-width: 350px;
-    text-align: center;
-}
-
-.modal-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.modal-actions button {
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--bg-color);
-}
-
-/* Dynamic Colors */
-.bg-red {
-    background-color: var(--team-red);
-}
-
-.bg-white {
-    background-color: var(--team-white);
-}
-
-.bg-black {
-    background-color: var(--team-black);
-    border: 1px solid #475569;
-}
-
-.bg-blue {
-    background-color: #3b82f6;
-}
-
-.text-red {
-    color: var(--team-red);
-}
-
-.text-white {
-    color: var(--team-white);
-}
-
-.text-black {
-    color: var(--team-black-text);
-}
-
-.text-blue {
-    color: #60a5fa;
-}
-
-/* Setup Modal */
-#setup-modal .team-selection {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 20px 0;
-    text-align: left;
-}
-
-.team-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.team-checkbox input {
-    width: 20px;
-    height: 20px;
-}
-
-/* History Table */
-#history-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 0.9rem;
-}
-
-#history-table td {
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    opacity: 0.8;
-}
-
-.total-time-badge {}
-
-button {
-    font-family: var(--font-main);
-    cursor: pointer;
-}
-
-#btn-start-pause {
-    background: var(--text-color);
-    color: var(--bg-color);
-    border: none;
-    padding: 12px 30px;
     border-radius: 12px;
     font-weight: 700;
     font-size: 1rem;
+    transition: background 0.2s;
 }
 
-.btn-secondary {
-    background: transparent;
-    border: 1px solid var(--glass-border);
-    color: var(--text-color);
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-weight: 600;
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 /* Queue */
@@ -410,13 +223,20 @@ button {
 }
 
 .btn-danger {
-    background: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    padding: 10px 20px;
-    border-radius: 8px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:active {
+    transform: scale(0.98);
 }
 
 /* Modal */
@@ -426,7 +246,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -444,6 +264,10 @@ button {
     width: 90%;
     max-width: 350px;
     text-align: center;
+    /* New contrasting background */
+    background: linear-gradient(135deg, #475569 0%, #334155 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .modal-actions {
@@ -460,6 +284,7 @@ button {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--bg-color);
+    margin-bottom: 5px;
 }
 
 /* Dynamic Colors */
@@ -489,7 +314,8 @@ button {
 }
 
 .text-black {
-    color: var(--team-black-text);
+    color: white !important;
+    /* Force white text for better visibility on dark buttons */
 }
 
 .text-blue {
@@ -608,18 +434,19 @@ button {
 }
 
 .btn-icon {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-secondary);
-    width: 30px;
-    height: 30px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     padding: 0;
+    transition: background 0.2s, color 0.2s;
 }
 
 .btn-icon:hover {
@@ -630,4 +457,75 @@ button {
 .full-width {
     width: 100%;
     margin-top: 1rem;
+}
+
+/* Premium Slider */
+.duration-control {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.highlight-text {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.slider-premium {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    margin: 10px 0;
+}
+
+.slider-premium:hover {
+    opacity: 1;
+}
+
+.slider-premium::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    border: 2px solid #fff;
+}
+
+.slider-premium::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    border: 2px solid #fff;
+}
+
+/* Primary Button (Start Tournament) */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
