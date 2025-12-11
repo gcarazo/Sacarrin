@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacarrin - Historial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="fullscreen-overlay">
+        <div class="results-container">
+            <header class="results-header">
+                <h2>📜 HISTORIAL DE PARTIDOS 📜</h2>
+            </header>
+
+            <div class="results-content" style="margin-top: 40px;">
+                <div class="table-wrapper glass-panel">
+                    <table id="history-table" class="full-width-table premium-table">
+                        <thead>
+                            <tr>
+                                <th>Partido</th>
+                                <th>Resultado</th>
+                                <th>Duración</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JS Populated -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="no-history-msg" class="hidden" style="text-align: center; padding: 20px; opacity: 0.7;">
+                    <p>Aún no hay partidos registrados.</p>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button onclick="historyApp.goBack()" class="btn-secondary">Volver al Juego</button>
+            </div>
+
+            <footer class="app-footer">
+                <p>Derechos reservados © 2025</p>
+                <p>Diseñado por <span class="designer-name">grejo</span></p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/history.js"></script>
+</body>
+
+</html>

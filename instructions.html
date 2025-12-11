@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacarrin - Instrucciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .instructions-list {
+            text-align: left;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .instruction-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .instruction-item h3 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .instruction-item p {
+            color: var(--text-color);
+            opacity: 0.9;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fullscreen-overlay">
+        <div class="results-container">
+            <header class="results-header">
+                <h2>📖 INSTRUCCIONES 📖</h2>
+            </header>
+
+            <div class="results-content">
+                <div class="glass-panel">
+                    <div class="instructions-list">
+                        <div class="instruction-item">
+                            <h3>1. Configuración Inicial</h3>
+                            <p>Al iniciar, selecciona la duración del partido (3-10 min) y el orden de los equipos. El
+                                ultimo equipo en la lista espera, mientras los dos primeros juegan.</p>
+                        </div>
+
+                        <div class="instruction-item">
+                            <h3>2. Desarrollo del Juego</h3>
+                            <p>El partido termina por tiempo o por GOL GANA. Si se anota un gol, el equipo pierde y
+                                sale, entrando el siguiente en la cola. Presiona sobre el boton GOL debajo de cada
+                                equipo para anotar un gol y un gane para ese equipo.</p>
+                        </div>
+
+                        <div class="instruction-item">
+                            <h3>3. Empates</h3>
+                            <p>Si el tiempo termina en empate (0-0), se debe definir un ganador. Usa la opción de
+                                penales (muerte súbita) o moneda al aire.</p>
+                        </div>
+
+                        <div class="instruction-item">
+                            <h3>4. Reiniciar</h3>
+                            <p>Si hubo un error con el tiempo, puedes usar el botón de "Reiniciar" durante el partido
+                                para corregir el
+                                el tiempo y reiniciar el partido.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button onclick="window.location.href='index.html'" class="btn-secondary">Volver al Juego</button>
+            </div>
+
+            <footer class="app-footer">
+                <p>Derechos reservados © 2025</p>
+                <p>Diseñado por <span class="designer-name">grejo</span></p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

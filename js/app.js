@@ -392,13 +392,7 @@ const app = {
         tbody.innerHTML = '';
 
         // Filter only active teams
-        const activeStats = this.state.activeTeams.map(id => ({ id, ...this.state.teams[id] }));
-
-        // Sort by wins, then goals
-        activeStats.sort((a, b) => {
-            if (b.wins !== a.wins) return b.wins - a.wins;
-            return b.goals - a.goals;
-        });
+        const activeStats = this.getSortedStats();
 
         activeStats.forEach(stats => {
             const team = TEAMS[stats.id.toUpperCase()];
@@ -436,6 +430,57 @@ const app = {
             `;
             tbody.appendChild(tr);
         });
+    },
+
+    getSortedStats() {
+        const activeStats = this.state.activeTeams.map(id => ({ id, ...this.state.teams[id] }));
+        // Sort by wins, then goals
+        return activeStats.sort((a, b) => {
+            if (b.wins !== a.wins) return b.wins - a.wins;
+            return b.goals - a.goals;
+        });
+    },
+
+    showResults() {
+        this.pauseTimer(); // Ensure game is paused
+        document.getElementById('modal-results').classList.remove('hidden');
+
+        // 1. Get Winner
+        const stats = this.getSortedStats();
+        if (stats.length > 0) {
+            const winner = stats[0];
+            const winnerTeam = TEAMS[winner.id.toUpperCase()];
+
+            const elWinnerSection = document.getElementById('winner-display');
+            elWinnerSection.classList.remove('hidden');
+
+            const elName = document.getElementById('winner-name');
+            elName.textContent = winnerTeam.name;
+            elName.className = winnerTeam.textClass; // Optional: add text color
+
+            const elDot = document.getElementById('winner-dot');
+            elDot.className = `dot big-dot ${winnerTeam.colorClass}`;
+        }
+
+        // 2. Render Table
+        const tbody = document.querySelector('#results-table tbody');
+        tbody.innerHTML = '';
+
+        stats.forEach(s => {
+            const team = TEAMS[s.id.toUpperCase()];
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span class="dot ${team.colorClass}" style="display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px;"></span>${team.name}</td>
+                <td>${s.wins}</td>
+                <td>${s.goals}</td>
+                <td>${s.matches}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    },
+
+    closeResults() {
+        document.getElementById('modal-results').classList.add('hidden');
     }
 };
 
